@@ -7,9 +7,24 @@ public class EnemyPathfinding : MonoBehaviour
 {
     public NodeScript CurrentNode;
     public List<NodeScript> Path = new List<NodeScript>();
+    GameObject Player;
+    Rigidbody2D RB;
+    Bounds PlayerBound = new Bounds();
+    Bounds EnemyBound = new Bounds();
+    int i = 0;
+    public float Speed = 1;
+
+    public void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        RB = (Rigidbody2D)gameObject.GetComponent("Rigidbody2D");
+        PlayerBound.size = new Vector2(1, 1);
+        EnemyBound.size = new Vector2(1, 1);
+    }
 
     private void Update()
     {
+        RB.velocity = new Vector2(0, 0);
         CreatePath();
     }
 
@@ -17,21 +32,52 @@ public class EnemyPathfinding : MonoBehaviour
     {
         if (Path.Count > 0)
         {
-            int i = 0;
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[i].transform.position.x, Path[i].transform.position.y), 3 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[0].transform.position.x, Path[0].transform.position.y), 3 * Time.deltaTime);
 
-            if (Vector2.Distance(transform.position, Path[i].transform.position) < 0.1f)
+            if (Vector2.Distance(transform.position, Path[0].transform.position) < 0.5f)
             {
-                CurrentNode = Path[i];
-                Path.RemoveAt(i);
+                CurrentNode = Path[0];
+                Path.RemoveAt(0);
+                i += 1;
+                if (i == 2)
+                {
+                    Path.Clear();
+                    i = 0;
+                }
             }
         }
         else
         {
             NodeScript[] Nodes = FindObjectsOfType<NodeScript>();
-            while (Path == null || Path.Count == 0)
+            PlayerBound.center = Player.transform.position;
+            NodeScript ObjectiveNode = CurrentNode;
+            foreach (NodeScript NodeCheck in FindObjectsOfType<NodeScript>())
             {
-                Path = AStarManager.Instance.GeneratePath(CurrentNode, Nodes[UnityEngine.Random.Range(0, Nodes.Length)]); //Start, End
+                if (PlayerBound.Contains(NodeCheck.transform.position))
+                {
+                    ObjectiveNode = NodeCheck;
+                    break;
+                }
+                
+            }
+            if (CurrentNode != null)
+            {
+                while (Path == null || Path.Count == 0)
+                {
+                    Path = AStarManager.Instance.GeneratePath(CurrentNode, ObjectiveNode); //Start, End
+                }
+            }
+            else
+            {
+                foreach (NodeScript NodeCheck in FindObjectsOfType<NodeScript>())
+                {
+                    if (EnemyBound.Contains(NodeCheck.transform.position))
+                    {
+                        CurrentNode = NodeCheck;
+                        break;
+                    }
+
+                }
             }
         }
     }
