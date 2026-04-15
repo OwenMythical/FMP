@@ -15,6 +15,6 @@ public class InteractionScript : MonoBehaviour
 
     public void Interact()
     {
-
+        Debug.Log("Interacted");
     }
 }
