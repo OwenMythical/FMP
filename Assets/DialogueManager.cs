@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class DialogueManager : MonoBehaviour
+{
+    public TextMeshProUGUI TextDisplay;
+    public Image Panel;
+    public bool DialogueRunning = false;
+    public bool DialogueRunning2 = false;
+
+    public IEnumerator DialogueStart(string Text)
+    {
+        if (DialogueRunning == false)
+        {
+            DialogueRunning = true;
+            string DisplayedText = "";
+            int i = 0;
+            TextDisplay.text = "";
+            Panel.enabled = true;
+            DialogueRunning2 = true;
+            while (DialogueRunning2 == true && DisplayedText != Text)
+            {
+                DisplayedText += Text[i];
+                yield return new WaitForSeconds(0.1f);
+                TextDisplay.text = DisplayedText;
+                i += 1;
+            }
+            yield return new WaitForSeconds(2f);
+            TextDisplay.text = "";
+            Panel.enabled = false;
+            DialogueRunning = false;
+        }
+    }
+
+    private void Start()
+    {
+        TextDisplay.text = "";
+        Panel.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (DialogueRunning2 == true)
+            {
+                DialogueRunning2 = false;
+                TextDisplay.text = "";
+                Panel.enabled = false;
+            }
+        }
+    }
+}

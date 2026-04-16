@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - InteractionObject
+  - Canvas
   layers:
   - Default
   - TransparentFX
