@@ -19,18 +19,20 @@ public class DialogueManager : MonoBehaviour
             string DisplayedText = "";
             int i = 0;
             TextDisplay.text = "";
+            TextDisplay.enabled = true;
             Panel.enabled = true;
             DialogueRunning2 = true;
             while (DialogueRunning2 == true && DisplayedText != Text)
             {
                 DisplayedText += Text[i];
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
                 TextDisplay.text = DisplayedText;
                 i += 1;
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             TextDisplay.text = "";
             Panel.enabled = false;
+            TextDisplay.enabled = false;
             DialogueRunning = false;
         }
     }
@@ -39,6 +41,7 @@ public class DialogueManager : MonoBehaviour
     {
         TextDisplay.text = "";
         Panel.enabled = false;
+        TextDisplay.enabled = false;
     }
 
     private void Update()
@@ -50,6 +53,7 @@ public class DialogueManager : MonoBehaviour
                 DialogueRunning2 = false;
                 TextDisplay.text = "";
                 Panel.enabled = false;
+                TextDisplay.enabled = false;
             }
         }
     }

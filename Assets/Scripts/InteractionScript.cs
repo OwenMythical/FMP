@@ -23,6 +23,5 @@ public class InteractionScript : MonoBehaviour
         {
             StartCoroutine(DM.DialogueStart(Text));
         }
-        Debug.Log("Interacted");
     }
 }

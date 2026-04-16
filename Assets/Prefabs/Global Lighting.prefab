@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127011134497302950}
   - component: {fileID: 7148426038903889597}
+  - component: {fileID: 7549926655195015187}
   m_Layer: 0
   m_Name: Global Lighting
   m_TagString: Untagged
@@ -82,3 +83,16 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &7549926655195015187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345883534782983902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71613542fa40104b9b84e4d10ef34fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalLighting: {fileID: 7148426038903889597}
