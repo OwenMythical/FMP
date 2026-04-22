@@ -9,6 +9,7 @@ public class EnemyPathfinding : MonoBehaviour
     public List<NodeScript> Path = new List<NodeScript>();
     GameObject Player;
     Rigidbody2D RB;
+    SpriteRenderer SR;
     Bounds PlayerBound = new Bounds();
     Bounds EnemyBound = new Bounds();
     int i = 0;
@@ -18,6 +19,8 @@ public class EnemyPathfinding : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         RB = (Rigidbody2D)gameObject.GetComponent("Rigidbody2D");
+        SR = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
+        SR.enabled = false;
         PlayerBound.size = new Vector2(1, 1);
         EnemyBound.size = new Vector2(1, 1);
     }
@@ -25,6 +28,9 @@ public class EnemyPathfinding : MonoBehaviour
     private void Update()
     {
         RB.velocity = new Vector2(0, 0);
+        Vector3 rotation = Player.transform.position - transform.position;
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 1.5f);
         CreatePath();
     }
 
