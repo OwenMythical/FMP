@@ -7,14 +7,15 @@ TagManager:
   - Floor
   - InteractionObject
   - Canvas
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemies
   - Water
   - UI
-  - 
+  - Walls
   - 
   - 
   - 
