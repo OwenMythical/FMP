@@ -5,17 +5,12 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
-public class FlashlightScript : MonoBehaviour
+public class PointlightScript : MonoBehaviour
 {
-    public float Battery = 1000;
     ContactFilter2D ContactFilter;
-    PolygonCollider2D FlashCollider;
-    Light2D LightSource;
     void Start()
     {
         ContactFilter = new ContactFilter2D();
-        LightSource = (Light2D)gameObject.GetComponent("Light2D");
-        FlashCollider = (PolygonCollider2D)gameObject.GetComponent("PolygonCollider2D");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -49,32 +44,6 @@ public class FlashlightScript : MonoBehaviour
         {
             SpriteRenderer SR = (SpriteRenderer)collision.gameObject.GetComponent("SpriteRenderer");
             SR.enabled = false;
-        }
-    }
-    void Update()
-    {
-        if (LightSource.enabled == true)
-        {
-            Battery -= 0.01f;
-            if (Battery <= 0)
-            {
-                Battery = 0;
-                LightSource.enabled = false;
-                FlashCollider.enabled = false;
-            }
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                LightSource.enabled = false;
-                FlashCollider.enabled = false;
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.F) && Battery > 0)
-            {
-                LightSource.enabled = true;
-                FlashCollider.enabled = true;
-            }
         }
     }
 }

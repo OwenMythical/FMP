@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
         RB.velocity = new Vector2(Horizontal, Vertical);
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             List<Collider2D> Colliders = new List<Collider2D>();
             ContactFilter2D Filter = new ContactFilter2D();

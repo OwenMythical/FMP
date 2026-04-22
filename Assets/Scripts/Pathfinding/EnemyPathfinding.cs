@@ -32,7 +32,7 @@ public class EnemyPathfinding : MonoBehaviour
     {
         if (Path.Count > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[0].transform.position.x, Path[0].transform.position.y), 3 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[0].transform.position.x, Path[0].transform.position.y), Speed * Time.deltaTime);
 
             if (Vector2.Distance(transform.position, Path[0].transform.position) < 0.5f)
             {

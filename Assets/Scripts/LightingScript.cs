@@ -9,6 +9,6 @@ public class LightingScript : MonoBehaviour
 
     void Start()
     {
-        GlobalLighting.color = new Color(0, 0, 0);
+        GlobalLighting.color = new Color(0.04f, 0.04f, 0.04f);
     }
 }
