@@ -22,23 +22,24 @@ public class FlashlightScript : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            SpriteRenderer SR = (SpriteRenderer)collision.gameObject.GetComponent("SpriteRenderer");
+            EnemyTransparency ET = (EnemyTransparency)collision.gameObject.GetComponent("EnemyTransparency");
             Vector3 Direction = collision.transform.position - gameObject.transform.position;
             List<RaycastHit2D> Results = new List<RaycastHit2D>();
             if (Physics2D.Raycast(transform.position, Direction, new ContactFilter2D(), Results) > 0)
             {
                 if (Results[1].collider.gameObject == collision.gameObject)
                 {
-                    SR.enabled = true;
+                    ET.Illuminated = true;
+
                 }
                 else
                 {
-                    SR.enabled = false;
+                    ET.Illuminated = false;
                 }
             }
             else
             {
-                SR.enabled = false;
+                ET.Illuminated = false;
             }
         }
     }
@@ -47,10 +48,11 @@ public class FlashlightScript : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            SpriteRenderer SR = (SpriteRenderer)collision.gameObject.GetComponent("SpriteRenderer");
-            SR.enabled = false;
+            EnemyTransparency ET = (EnemyTransparency)collision.gameObject.GetComponent("EnemyTransparency");
+            ET.Illuminated = false;
         }
     }
+
     void Update()
     {
         if (LightSource.enabled == true)

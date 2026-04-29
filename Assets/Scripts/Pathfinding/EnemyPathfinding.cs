@@ -9,7 +9,6 @@ public class EnemyPathfinding : MonoBehaviour
     public List<NodeScript> Path = new List<NodeScript>();
     GameObject Player;
     Rigidbody2D RB;
-    SpriteRenderer SR;
     Bounds PlayerBound = new Bounds();
     Bounds EnemyBound = new Bounds();
     int i = 0;
@@ -19,8 +18,6 @@ public class EnemyPathfinding : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         RB = (Rigidbody2D)gameObject.GetComponent("Rigidbody2D");
-        SR = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
-        SR.enabled = false;
         PlayerBound.size = new Vector2(1, 1);
         EnemyBound.size = new Vector2(1, 1);
     }
