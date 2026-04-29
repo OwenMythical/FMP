@@ -4,12 +4,14 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 1;
     public GameObject ItemObject;
     public GameObject ItemPickupPrefab;
+    AssetFinder AF;
     string CurrentEquipped = "Nothing";
     int EquippedSpace = 0;
     SpriteRenderer OSR;
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
         Collider = (CircleCollider2D)gameObject.GetComponent("CircleCollider2D");
         IM = (InventoryManager)GameObject.FindGameObjectWithTag("Canvas").GetComponent("InventoryManager");
         OSR = (SpriteRenderer)ItemObject.GetComponent("SpriteRenderer");
+        AF = (AssetFinder)GameObject.FindGameObjectWithTag("Canvas").GetComponent("AssetFinder");
     }
 
     void Update()
@@ -117,10 +120,11 @@ public class PlayerController : MonoBehaviour
                 OSR.enabled = false;
                 CurrentEquipped = "Nothing";
             }
-            else if (ItemToEquip == "Pipe")
+            else
             {
-                OSR.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/Pipe.png");
-                CurrentEquipped = "Pipe";
+                string Path = AF.GetPath(ItemToEquip);
+                OSR.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Path);
+                CurrentEquipped = ItemToEquip;
                 OSR.enabled = true;
             }
         }

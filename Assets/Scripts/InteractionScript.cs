@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class InteractionScript : MonoBehaviour
 {
-    public bool EventInteraction;
+    public bool CollectInteraction;
     public bool DialogueInteraction;
+    public bool Collected = false;
     public string Text;
+    public string Item;
+    public int Amount;
     DialogueManager DM;
+    InventoryManager IM;
     GameObject Player;
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        GameObject DMO = GameObject.FindGameObjectWithTag("Canvas");
-        DM = (DialogueManager)DMO.GetComponent("DialogueManager");
+        GameObject Can = GameObject.FindGameObjectWithTag("Canvas");
+        DM = (DialogueManager)Can.GetComponent("DialogueManager");
+        IM = (InventoryManager)Can.GetComponent("InventoryManager");
     }
 
     public void Interact()
@@ -22,6 +27,23 @@ public class InteractionScript : MonoBehaviour
         if (DialogueInteraction == true)
         {
             StartCoroutine(DM.DialogueStart(Text));
+        }
+
+        if (CollectInteraction == true && Collected == false)
+        {
+            Collected = true;
+            if (Item == "MetalScrap")
+            {
+                IM.MetalScrap += Amount;
+            }
+            else if (Item == "WoodScrap")
+            {
+                IM.WoodScrap += Amount;
+            }
+            else
+            {
+                IM.AddItem(Item);
+            }
         }
     }
 }
