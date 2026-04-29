@@ -8,6 +8,7 @@ TagManager:
   - InteractionObject
   - Canvas
   - Enemy
+  - CollectionObject
   layers:
   - Default
   - TransparentFX

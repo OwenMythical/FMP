@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectionScript : MonoBehaviour
 {
-    public string Material;
+    public string Item;
     public int Amount;
     InventoryManager IM;
 
@@ -13,19 +13,20 @@ public class CollectionScript : MonoBehaviour
         IM = (InventoryManager)GameObject.FindGameObjectWithTag("Canvas").GetComponent("InventoryManager");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Collect()
     {
-        if (collision.tag == "Player")
+        if (Item == "MetalScrap")
         {
-            if (Material == "MetalScrap")
-            {
-                IM.MetalScrap += Amount;
-            }
-            else if (Material == "WoodScrap")
-            {
-                IM.WoodScrap += Amount;
-            }
-            Destroy(gameObject);
+            IM.MetalScrap += Amount;
         }
+        else if (Item == "WoodScrap")
+        {
+            IM.WoodScrap += Amount;
+        }
+        else
+        {
+            IM.AddItem(Item);
+        }
+        Destroy(gameObject);
     }
 }

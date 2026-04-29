@@ -1,21 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 1;
+    public GameObject ItemObject;
+    public GameObject ItemPickupPrefab;
+    string CurrentEquipped = "Nothing";
+    int EquippedSpace = 0;
+    SpriteRenderer OSR;
     Rigidbody2D RB;
     CircleCollider2D Collider;
-    // Start is called before the first frame update
+    InventoryManager IM;
+
     void Start()
     {
         RB = (Rigidbody2D)gameObject.GetComponent("Rigidbody2D");
         Collider = (CircleCollider2D)gameObject.GetComponent("CircleCollider2D");
+        IM = (InventoryManager)GameObject.FindGameObjectWithTag("Canvas").GetComponent("InventoryManager");
+        OSR = (SpriteRenderer)ItemObject.GetComponent("SpriteRenderer");
     }
 
-    // Update is called once per frame
     void Update()
     {
         float Horizontal = Input.GetAxisRaw("Horizontal") * MoveSpeed;
@@ -23,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
         RB.velocity = new Vector2(Horizontal, Vertical);
 
+        //Object Interaction
         if (Input.GetKeyDown(KeyCode.E))
         {
             List<Collider2D> Colliders = new List<Collider2D>();
@@ -35,9 +45,84 @@ public class PlayerController : MonoBehaviour
                     InteractionScript IntScript = (InteractionScript)Coll.gameObject.GetComponent("InteractionScript");
                     IntScript.Interact();
                 }
+                else if (Coll.gameObject.tag == "CollectionObject")
+                {
+                    CollectionScript ColScript = (CollectionScript)Coll.gameObject.GetComponent("CollectionScript");
+                    ColScript.Collect();
+                }
+            }
+        }
+
+        //Item Dropping
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (CurrentEquipped != "Nothing")
+            {
+                GameObject NewItemPickup = GameObject.Instantiate(ItemPickupPrefab);
+                NewItemPickup.transform.position = gameObject.transform.position;
+                CollectionScript ColScript = (CollectionScript)NewItemPickup.GetComponent("CollectionScript");
+                ColScript.Item = CurrentEquipped;
+                SpriteRenderer ISR = (SpriteRenderer)NewItemPickup.GetComponent("SpriteRenderer");
+                ISR.sprite = OSR.sprite;
+                IM.Inventory[EquippedSpace].text = "Nothing";
+                CurrentEquipped = "Nothing";
+                OSR.enabled = false;
+            }
+        }
+
+        //Inventory Equipping
+        string ItemToEquip = "Nothing";
+        bool InvButtonPressed = false;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ItemToEquip = IM.Inventory[0].text;
+            EquippedSpace = 0;
+            InvButtonPressed = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ItemToEquip = IM.Inventory[1].text;
+            EquippedSpace = 1;
+            InvButtonPressed = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ItemToEquip = IM.Inventory[2].text;
+            EquippedSpace = 2;
+            InvButtonPressed = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ItemToEquip = IM.Inventory[3].text;
+            EquippedSpace = 3;
+            InvButtonPressed = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ItemToEquip = IM.Inventory[4].text;
+            EquippedSpace = 4;
+            InvButtonPressed = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            ItemToEquip = IM.Inventory[5].text;
+            EquippedSpace = 5;
+            InvButtonPressed = true;
+        }
+
+        if (InvButtonPressed == true)
+        {
+            if (ItemToEquip == "Nothing")
+            {
+                OSR.enabled = false;
+                CurrentEquipped = "Nothing";
+            }
+            else if (ItemToEquip == "Pipe")
+            {
+                OSR.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/Pipe.png");
+                CurrentEquipped = "Pipe";
+                OSR.enabled = true;
             }
         }
     }
-
-
 }
