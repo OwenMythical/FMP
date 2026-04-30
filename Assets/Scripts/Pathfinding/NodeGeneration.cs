@@ -64,6 +64,8 @@ public class NodeGeneration : MonoBehaviour
                     {
                         NodeCheck.Connections.Add(NewNode);
                     }
+
+                    //Debug.DrawLine(NodeCheck.transform.position, Position, new Color(1,0,0), 99999);
                 }
             }
             //Generate More Nodes
