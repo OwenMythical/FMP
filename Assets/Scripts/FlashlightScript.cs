@@ -8,12 +8,10 @@ using UnityEngine.UIElements;
 public class FlashlightScript : MonoBehaviour
 {
     public float Battery = 1000;
-    ContactFilter2D ContactFilter;
     PolygonCollider2D FlashCollider;
     Light2D LightSource;
     void Start()
     {
-        ContactFilter = new ContactFilter2D();
         LightSource = (Light2D)gameObject.GetComponent("Light2D");
         FlashCollider = (PolygonCollider2D)gameObject.GetComponent("PolygonCollider2D");
     }

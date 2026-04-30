@@ -23,6 +23,7 @@ public class EnemyPathfinding : MonoBehaviour
     int EM = 0;
     bool PlayerSpotted = false;
     bool Wandering = false;
+    bool Distracted = false;
     Vector2 OriginPosition;
     public float Speed = 1;
 
@@ -97,7 +98,7 @@ public class EnemyPathfinding : MonoBehaviour
                 Path.RemoveAt(0);
                 EM = 0;
                 i += 1;
-                if (i >= 2 && (PlayerSpotted == true || Wandering == false))
+                if (i >= 2 && (PlayerSpotted == true || (Wandering == false && Distracted == false)))
                 {
                     Path.Clear();
                     i = 0;
@@ -106,6 +107,12 @@ public class EnemyPathfinding : MonoBehaviour
                 {
                     Path.Clear();
                     Wandering = false;
+                    i = 0;
+                }
+                if (Distracted == true && PlayerSpotted == true)
+                {
+                    Path.Clear();
+                    Distracted = false;
                     i = 0;
                 }
             }
@@ -151,7 +158,7 @@ public class EnemyPathfinding : MonoBehaviour
                         i = 0;
                     }
                 }
-                else if (Boredom >= MaxBoredom && WanderCooldown >= MaxWanderCooldown)
+                else if (Boredom >= MaxBoredom && WanderCooldown >= MaxWanderCooldown && Distracted == false)
                 {
                     WanderCooldown = 0;
                     Wandering = true;
@@ -188,6 +195,40 @@ public class EnemyPathfinding : MonoBehaviour
                 {
                     WanderCooldown += 1;
                 }
+            }
+        }
+    }
+
+    public void Distract(Vector2 DistractionPos)
+    {
+        if (PlayerSpotted == false)
+        {
+            Distracted = true;
+            Wandering = false;
+            RandomBound.center = DistractionPos;
+            NodeScript[] Nodes = FindObjectsOfType<NodeScript>();
+            NodeScript ObjectiveNode = CurrentNode;
+            foreach (NodeScript NodeCheck in FindObjectsOfType<NodeScript>())
+            {
+                if (RandomBound.Contains(NodeCheck.transform.position))
+                {
+                    ObjectiveNode = NodeCheck;
+                    break;
+                }
+            }
+            if (CurrentNode != null && ObjectiveNode != null)
+            {
+                Path = AStarManager.Instance.GeneratePath(CurrentNode, ObjectiveNode); //Start, End
+                NodeScript CurrentNodeTEST = CurrentNode;
+                float J = 0;
+                foreach (NodeScript Node in Path)
+                {
+                    J += 0.025f;
+                    Debug.DrawLine(CurrentNodeTEST.transform.position, Node.transform.position, new Color(1, 1, J), 0.5f);
+                    CurrentNodeTEST = Node;
+                }
+                EM = 0;
+                i = 0;
             }
         }
     }

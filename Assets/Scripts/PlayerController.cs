@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 1;
     public GameObject ItemObject;
-    public GameObject ItemPickupPrefab;
+    public GameObject PR;
     AssetFinder AF;
     string CurrentEquipped = "Nothing";
     int EquippedSpace = 0;
@@ -61,12 +62,27 @@ public class PlayerController : MonoBehaviour
         {
             if (CurrentEquipped != "Nothing")
             {
-                GameObject NewItemPickup = GameObject.Instantiate(ItemPickupPrefab);
+                GameObject NewItemPickup = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ItemPickup.prefab"));
                 NewItemPickup.transform.position = gameObject.transform.position;
                 CollectionScript ColScript = (CollectionScript)NewItemPickup.GetComponent("CollectionScript");
                 ColScript.Item = CurrentEquipped;
                 SpriteRenderer ISR = (SpriteRenderer)NewItemPickup.GetComponent("SpriteRenderer");
                 ISR.sprite = OSR.sprite;
+                IM.Inventory[EquippedSpace].text = "Nothing";
+                CurrentEquipped = "Nothing";
+                OSR.enabled = false;
+            }
+        }
+
+        //Item Using
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (CurrentEquipped == "Noise Maker")
+            {
+                GameObject NoiseMaker = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Distractor.prefab"));
+                NoiseMaker.transform.position = gameObject.transform.position;
+                Rigidbody2D NMRB = (Rigidbody2D)NoiseMaker.GetComponent("Rigidbody2D");
+                NMRB.AddForce(PR.transform.up * 750);
                 IM.Inventory[EquippedSpace].text = "Nothing";
                 CurrentEquipped = "Nothing";
                 OSR.enabled = false;

@@ -14,6 +14,10 @@ public class AssetFinder : MonoBehaviour
         {
             Path = "Assets/Sprites/Pipe.png";
         }
+        if (Item == "Noise Maker")
+        {
+            Path = "Assets/Sprites/Light2.png";
+        }
 
         return Path;
     }

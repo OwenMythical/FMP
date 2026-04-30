@@ -44,7 +44,11 @@ public class InventoryManager : MonoBehaviour
         switch(Item)
         {
             case "Pipe":
+                MS = 3;
+                break;
+            case "Noise Maker":
                 MS = 2;
+                WS = 1;
                 break;
             default:
                 MS = 999;
