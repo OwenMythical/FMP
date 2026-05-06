@@ -17,18 +17,18 @@ public class EnemyTransparency : MonoBehaviour
     {
         if (Illuminated == false)
         {
-            SR.color = new Color(1, 1, 1, SR.color.a - 0.01f);
+            SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, SR.color.a - 0.01f);
             if (SR.color.a < 0)
             {
-                SR.color = new Color(1, 1, 1, 0);
+                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 0);
             }
         }
         else
         {
-            SR.color = new Color(1, 1, 1, SR.color.a + 0.01f);
+            SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, SR.color.a + 0.02f);
             if (SR.color.a > 1)
             {
-                SR.color = new Color(1, 1, 1, 1);
+                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 1);
             }
         }
     }

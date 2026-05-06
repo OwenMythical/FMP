@@ -9,6 +9,7 @@ public class EnemyPathfinding : MonoBehaviour
     public NodeScript CurrentNode;
     public List<NodeScript> Path = new List<NodeScript>();
     public PolygonCollider2D VisionCone;
+    public EnemyHealth EH;
     GameObject Player;
     Rigidbody2D RB;
     NodeScript NextNode;
@@ -16,8 +17,10 @@ public class EnemyPathfinding : MonoBehaviour
     Bounds EnemyBound = new Bounds();
     Bounds RandomBound = new Bounds();
     int Boredom = 99999;
+    int Interest = 0;
     int WanderCooldown = 0;
     public int MaxBoredom = 1000;
+    public int MaxInterest = 150;
     public int MaxWanderCooldown = 1000;
     int i = 0;
     int EM = 0;
@@ -55,7 +58,10 @@ public class EnemyPathfinding : MonoBehaviour
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 1.5f);
         }
-        CreatePath();
+        if (EH.CanMove == true)
+        {
+            CreatePath();
+        }
     }
 
     public void CreatePath()
@@ -70,6 +76,7 @@ public class EnemyPathfinding : MonoBehaviour
                 PlayerSpotted = true;
                 OriginPosition = CurrentNode.transform.position;
                 Boredom = 0;
+                Interest += 1;
             }
             else
             {
@@ -82,9 +89,17 @@ public class EnemyPathfinding : MonoBehaviour
             PlayerSpotted = false;
             Boredom += 1;
         }
-        if (Boredom > 99999)
+        if (Boredom > MaxBoredom)
         {
-            Boredom = 99999;
+            Boredom = MaxBoredom;
+        }
+        if (Interest > MaxInterest)
+        {
+            Interest = MaxInterest;
+        }
+        if (Boredom >= MaxBoredom)
+        {
+            Interest = 0;
         }
         if (Path.Count > 0)
         {
@@ -128,7 +143,7 @@ public class EnemyPathfinding : MonoBehaviour
         {
             if (Physics2D.Raycast(transform.position, Direction, new ContactFilter2D(), Results) > 0)
             {
-                if ((Results[1].collider.gameObject == Player.gameObject && VisionCone.OverlapPoint(Player.transform.position)) || Boredom < MaxBoredom)
+                if ((Results[1].collider.gameObject == Player.gameObject && VisionCone.OverlapPoint(Player.transform.position) && Interest >= MaxInterest) || (Boredom < MaxBoredom && Interest >= MaxInterest))
                 {
                     //Chase Player
                     Wandering = false;
