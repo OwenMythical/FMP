@@ -3931,6 +3931,24 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1861053120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 566584942003785082, guid: cc40c42e46745604f8e9a155e473695a, type: 3}
+  m_PrefabInstance: {fileID: 4205903653158365757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1861053126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861053120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92e68e5d2c227945a7b4b7846ea4a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
 --- !u!1 &1871133810
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,7 +4161,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5128287787776445648, guid: 103fa3560c0c4114cb07270acaa15d6d, type: 3}
       propertyPath: m_Name
-      value: ItemPickup (2)
+      value: ItemPickup
       objectReference: {fileID: 0}
     - target: {fileID: 6877561890363507398, guid: 103fa3560c0c4114cb07270acaa15d6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10760,6 +10778,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 566584942003785082, guid: cc40c42e46745604f8e9a155e473695a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1861053126}
     - targetCorrespondingSourceObject: {fileID: 7409003527636791334, guid: cc40c42e46745604f8e9a155e473695a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1160392304}
