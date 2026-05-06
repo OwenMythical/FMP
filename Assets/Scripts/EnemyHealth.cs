@@ -17,8 +17,7 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject.GetComponent("EnemyPathfinding"));
             Destroy(gameObject.GetComponent("Animator"));
             Destroy(gameObject.GetComponent("RandomSoundPlayer"));
-            //Destroy enemy damaging script
-
+            Destroy(gameObject.GetComponent("ContactDamage"));
         }
         StartCoroutine(Stun(StunTime));
     }

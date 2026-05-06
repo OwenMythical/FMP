@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
             SpriteRenderer SR = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
             SR.color = new Color(0.75f, 0.75f, 0.75f);
             Destroy(gameObject.GetComponent("PlayerController"));
+            Rigidbody2D RB = (Rigidbody2D)gameObject.GetComponent("Rigidbody2D");
+            RB.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 }
