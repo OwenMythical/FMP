@@ -76,17 +76,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.0075404225, y: 0.7140037}
-      - {x: -0.38932058, y: 0.7116062}
-      - {x: -0.6112203, y: 0.39354208}
-      - {x: -0.60491276, y: 0.002132848}
-      - {x: -0.40084684, y: -0.3862928}
+    - - {x: 0.00083207525, y: 0.8005187}
+      - {x: -0.4004839, y: 0.7953302}
+      - {x: -0.7116891, y: 0.3963327}
+      - {x: -0.71654487, y: -0.000658175}
+      - {x: -0.5348055, y: -0.39187446}
       - {x: -1.1900867, y: -3.4365976}
       - {x: 1.2077444, y: -3.4359932}
-      - {x: 0.41006672, y: -0.3948403}
-      - {x: 0.6023432, y: 0.00025872886}
-      - {x: 0.6053765, y: 0.39594632}
-      - {x: 0.39819247, y: 0.72130173}
+      - {x: 0.5049542, y: -0.4048245}
+      - {x: 0.70560324, y: 0.00025872886}
+      - {x: 0.70584565, y: 0.4043188}
+      - {x: 0.409356, y: 0.8022347}
   m_UseDelaunayMesh: 0
 --- !u!1 &2504859270283466942
 GameObject:
@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 4717997651785729753}
   - component: {fileID: 3632492354506055704}
   - component: {fileID: 8270230264931334023}
-  - component: {fileID: 3931751114677935578}
   m_Layer: 3
   m_Name: Crawler
   m_TagString: Enemy
@@ -209,7 +208,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7250305466910259496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +225,8 @@ MonoBehaviour:
   Path: []
   VisionCone: {fileID: 8401067465408653055}
   EH: {fileID: 8270230264931334023}
+  HB: {fileID: 5574779896620855507}
+  Interest: 0
   MaxBoredom: 1000
   MaxInterest: 150
   MaxWanderCooldown: 1000
@@ -424,21 +425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   CanMove: 1
---- !u!114 &3931751114677935578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2504859270283466942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e562eb29574f6f749947a1ba5fe0270b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 1
-  Damage: 20
-  Hitbox: {fileID: 0}
 --- !u!1 &9142728617000061530
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379731255777408247}
   - component: {fileID: 3418293789601620793}
+  - component: {fileID: 5574779896620855507}
   m_Layer: 3
   m_Name: Hitbox
   m_TagString: Untagged
@@ -500,10 +487,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0.08}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -514,5 +501,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.71}
+  m_Size: {x: 0.35, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &5574779896620855507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142728617000061530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e562eb29574f6f749947a1ba5fe0270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 1
+  Damage: 20
+  CanAttack: 1
+  EH: {fileID: 8270230264931334023}

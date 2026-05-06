@@ -10,6 +10,7 @@ public class EnemyPathfinding : MonoBehaviour
     public List<NodeScript> Path = new List<NodeScript>();
     public PolygonCollider2D VisionCone;
     public EnemyHealth EH;
+    public ContactDamage HB;
     GameObject Player;
     Rigidbody2D RB;
     NodeScript NextNode;
@@ -17,7 +18,7 @@ public class EnemyPathfinding : MonoBehaviour
     Bounds EnemyBound = new Bounds();
     Bounds RandomBound = new Bounds();
     int Boredom = 99999;
-    int Interest = 0;
+    public int Interest = 0;
     int WanderCooldown = 0;
     public int MaxBoredom = 1000;
     public int MaxInterest = 150;
@@ -58,7 +59,7 @@ public class EnemyPathfinding : MonoBehaviour
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 1.5f);
         }
-        if (EH.CanMove == true)
+        if (EH.CanMove == true && HB.CanAttack == true)
         {
             CreatePath();
         }
