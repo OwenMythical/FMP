@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 public class FlashlightScript : MonoBehaviour
@@ -39,6 +40,16 @@ public class FlashlightScript : MonoBehaviour
             {
                 ET.Illuminated = false;
             }
+        }
+
+        if (collision.tag == "Fog")
+        {
+            Tilemap Fog = collision.GetComponent<Tilemap>();
+            Vector3 Position = collision.ClosestPoint(FlashCollider.transform.position);
+            Vector3Int CellPosition = Fog.WorldToCell(Position + new Vector3(0.5f, 0.5f));
+            Debug.Log(CellPosition);
+            Fog.SetTile(CellPosition, null);
+            //try getting every tile position and using trial and error instead? might be laggy
         }
     }
 

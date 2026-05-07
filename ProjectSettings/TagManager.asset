@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - CollectionObject
   - Dead
+  - Fog
   layers:
   - Default
   - TransparentFX

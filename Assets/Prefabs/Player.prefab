@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8afb115d0204d469c34fa32b2a75a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Battery: 1000
+  Battery: 750
 --- !u!58 &1638730021952441391
 CircleCollider2D:
   m_ObjectHideFlags: 0

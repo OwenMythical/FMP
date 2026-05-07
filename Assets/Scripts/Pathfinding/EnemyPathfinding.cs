@@ -57,7 +57,7 @@ public class EnemyPathfinding : MonoBehaviour
         {
             Vector3 rotation = NextNode.transform.position - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 3.5f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 3f);
         }
         if (EH.CanMove == true && HB.CanAttack == true)
         {
