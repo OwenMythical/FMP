@@ -7,6 +7,7 @@ public class InteractionScript : MonoBehaviour
 {
     public bool CollectInteraction;
     public bool DialogueInteraction;
+    public bool OpenShop;
     public bool Collected = false;
     public string Text;
     public string Item;
@@ -35,15 +36,22 @@ public class InteractionScript : MonoBehaviour
             if (Item == "MetalScrap")
             {
                 IM.MetalScrap += Amount;
+                IM.Refresh();
             }
             else if (Item == "WoodScrap")
             {
                 IM.WoodScrap += Amount;
+                IM.Refresh();
             }
             else
             {
                 IM.AddItem(Item);
             }
+        }
+
+        if (OpenShop == true)
+        {
+            IM.OpenShop();
         }
     }
 }

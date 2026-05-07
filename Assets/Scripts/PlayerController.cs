@@ -93,7 +93,11 @@ public class PlayerController : MonoBehaviour
                 }
                 if (CurrentEquipped == "Pipe")
                 {
-                    StartCoroutine(Attack(34,2,true));
+                    StartCoroutine(Attack(20,2,true));
+                }
+                if (CurrentEquipped == "Axe")
+                {
+                    StartCoroutine(Attack(25,0.1f,false));
                 }
             }
 
@@ -158,17 +162,18 @@ public class PlayerController : MonoBehaviour
     IEnumerator Attack(float Damage, float StunTime, bool Break)
     {
         Attacking = true;
-        OSR.transform.SetLocalPositionAndRotation(new Vector3(0.6f, 0.1f, 0.0f), Quaternion.Euler(0, 0, 145));
+        OSR.transform.SetLocalPositionAndRotation(new Vector3(0.6f, 0.1f, 0.0f), Quaternion.Euler(0, 0, -20));
         yield return new WaitForSeconds(0.25f);
         OSR.transform.SetLocalPositionAndRotation(new Vector3(0.3f, 0.75f, 0.0f), Quaternion.Euler(0, 0, 50));
         yield return new WaitForSeconds(0.05f);
         OSR.transform.SetLocalPositionAndRotation(new Vector3(-0.3f, 0.75f, 0.0f), Quaternion.Euler(0, 0, 130));
         yield return new WaitForSeconds(0.1f);
-        OSR.transform.SetLocalPositionAndRotation(new Vector3(-0.6f, 0.6f, 0.0f), Quaternion.Euler(0, 0, -20));
+        OSR.transform.SetLocalPositionAndRotation(new Vector3(-0.6f, 0.6f, 0.0f), Quaternion.Euler(0, 0, 145));
         //Hitbox
         BoxCollider2D Hitbox = (BoxCollider2D)PR.GetComponent("BoxCollider2D");
         List<Collider2D> Results = new List<Collider2D>();
         Hitbox.OverlapCollider(new ContactFilter2D(), Results);
+        bool Broken = false;
         foreach(Collider2D Object in Results)
         {
             if (Object.tag == "Enemy")
@@ -177,13 +182,17 @@ public class PlayerController : MonoBehaviour
                 EH.TakeDamage(Damage,StunTime);
                 if (Break == true)
                 {
+                    Broken = true;
                     IM.Inventory[EquippedSpace].text = "Nothing";
                     CurrentEquipped = "Nothing";
                     OSR.enabled = false;
                 }
             }
         }
-        yield return new WaitForSeconds(0.75f);
+        if (Broken == false)
+        {
+            yield return new WaitForSeconds(0.75f);
+        }
         OSR.transform.SetLocalPositionAndRotation(new Vector3(0.5f, 0.5f, 0.0f), Quaternion.Euler(0, 0, 90));
         Attacking = false;
     }

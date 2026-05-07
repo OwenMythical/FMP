@@ -57,7 +57,7 @@ public class EnemyPathfinding : MonoBehaviour
         {
             Vector3 rotation = NextNode.transform.position - transform.position;
             float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 1.5f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotZ + 90), 3.5f);
         }
         if (EH.CanMove == true && HB.CanAttack == true)
         {
@@ -246,6 +246,39 @@ public class EnemyPathfinding : MonoBehaviour
                 EM = 0;
                 i = 0;
             }
+        }
+    }
+
+    public void Damaged()
+    {
+        //Chase Player
+        Boredom = 0;
+        Interest = MaxInterest;
+        Wandering = false;
+        NodeScript[] Nodes = FindObjectsOfType<NodeScript>();
+        PlayerBound.center = Player.transform.position;
+        NodeScript ObjectiveNode = CurrentNode;
+        foreach (NodeScript NodeCheck in FindObjectsOfType<NodeScript>())
+        {
+            if (PlayerBound.Contains(NodeCheck.transform.position))
+            {
+                ObjectiveNode = NodeCheck;
+                break;
+            }
+        }
+        if (CurrentNode != null && ObjectiveNode != null)
+        {
+            Path = AStarManager.Instance.GeneratePath(CurrentNode, ObjectiveNode); //Start, End
+            NodeScript CurrentNodeTEST = CurrentNode;
+            float J = 0;
+            foreach (NodeScript Node in Path)
+            {
+                J += 0.025f;
+                Debug.DrawLine(CurrentNodeTEST.transform.position, Node.transform.position, new Color(0, J, 1), 0.5f);
+                CurrentNodeTEST = Node;
+            }
+            EM = 0;
+            i = 0;
         }
     }
 }

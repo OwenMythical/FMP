@@ -18,10 +18,12 @@ public class CollectionScript : MonoBehaviour
         if (Item == "MetalScrap")
         {
             IM.MetalScrap += Amount;
+            IM.Refresh();
         }
         else if (Item == "WoodScrap")
         {
             IM.WoodScrap += Amount;
+            IM.Refresh();
         }
         else
         {
