@@ -45,6 +45,7 @@ public class InventoryManager : MonoBehaviour
         foreach (TextMeshProUGUI InvText in Inventory)
         {
             ShopInv[i].text = InvText.text;
+            i += 1;
         }
         MSD.text = "Metal: " + MetalScrap.ToString();
         WSD.text = "Wood: " + WoodScrap.ToString();
