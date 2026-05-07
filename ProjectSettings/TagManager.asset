@@ -9,6 +9,7 @@ TagManager:
   - Canvas
   - Enemy
   - CollectionObject
+  - Dead
   layers:
   - Default
   - TransparentFX
