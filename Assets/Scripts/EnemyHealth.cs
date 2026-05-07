@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
             IM.Influence += InfluenceGain;
             SpriteRenderer SR = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
             SR.color = new Color(0.75f, 0.75f, 0.75f);
-            gameObject.tag = "Untagged";
+            gameObject.tag = "Dead";
             Destroy(gameObject.GetComponent("EnemyPathfinding"));
             Destroy(gameObject.GetComponent("Animator"));
             Destroy(gameObject.GetComponent("RandomSoundPlayer"));

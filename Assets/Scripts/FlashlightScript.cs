@@ -18,7 +18,7 @@ public class FlashlightScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" || collision.tag == "Dead")
         {
             EnemyTransparency ET = (EnemyTransparency)collision.gameObject.GetComponent("EnemyTransparency");
             Vector3 Direction = collision.transform.position - gameObject.transform.position;
@@ -44,7 +44,7 @@ public class FlashlightScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" || collision.tag == "Dead")
         {
             EnemyTransparency ET = (EnemyTransparency)collision.gameObject.GetComponent("EnemyTransparency");
             ET.Illuminated = false;
