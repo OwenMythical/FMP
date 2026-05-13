@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +15,7 @@ public class InventoryManager : MonoBehaviour
     public int WoodScrap = 0;
     public int Influence = 0;
     public List<TextMeshProUGUI> Inventory = new List<TextMeshProUGUI>();
+    public List<string> KeyInventory = new List<string>();
     public List<TextMeshProUGUI> ShopInv = new List<TextMeshProUGUI>();
     public TextMeshProUGUI MSD;
     public TextMeshProUGUI WSD;
@@ -170,5 +172,33 @@ public class InventoryManager : MonoBehaviour
             ISR.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Path);
         }
         Refresh();
+    }
+
+    public void AddKey(string Key)
+    {
+        bool Exists = false;
+        foreach (string Item in KeyInventory)
+        {
+            if (Item == Key)
+            {
+                Exists = true;
+            }
+        }
+        if (Exists == false)
+        {
+            KeyInventory.Add(Key);
+        }
+    }
+
+    public bool CheckKey(string Key)
+    {
+        foreach (string Item in KeyInventory)
+        {
+            if (Item == Key)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

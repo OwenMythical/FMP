@@ -7,6 +7,8 @@ public class InteractionScript : MonoBehaviour
 {
     public bool CollectInteraction;
     public bool DialogueInteraction;
+    public bool KeyCheck;
+    public bool DoorOpen;
     public bool OpenShop;
     public bool Collected = false;
     public string Text;
@@ -27,7 +29,27 @@ public class InteractionScript : MonoBehaviour
     {
         if (DialogueInteraction == true)
         {
-            StartCoroutine(DM.DialogueStart(Text));
+            DM.DialogueStart(Text);
+        }
+
+        if (DoorOpen == true)
+        {
+            if (KeyCheck == true)
+            {
+                bool Check = IM.CheckKey(Item);
+                if (Check == true)
+                {
+                    Destroy(gameObject);
+                }
+                else if (Text != "")
+                {
+                    DM.DialogueStart(Text);
+                }
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         if (CollectInteraction == true && Collected == false)

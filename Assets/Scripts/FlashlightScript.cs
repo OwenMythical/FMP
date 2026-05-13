@@ -24,7 +24,7 @@ public class FlashlightScript : MonoBehaviour
             EnemyTransparency ET = (EnemyTransparency)collision.gameObject.GetComponent("EnemyTransparency");
             Vector3 Direction = collision.transform.position - gameObject.transform.position;
             List<RaycastHit2D> Results = new List<RaycastHit2D>();
-            if (Physics2D.Raycast(transform.position, Direction, new ContactFilter2D(), Results) > 0)
+            if (Physics2D.Raycast(transform.position, Direction, new ContactFilter2D(), Results) > 1)
             {
                 if (Results[1].collider.gameObject == collision.gameObject)
                 {
@@ -44,12 +44,25 @@ public class FlashlightScript : MonoBehaviour
 
         if (collision.tag == "Fog")
         {
-            Tilemap Fog = collision.GetComponent<Tilemap>();
-            Vector3 Position = collision.ClosestPoint(FlashCollider.transform.position);
-            Vector3Int CellPosition = Fog.WorldToCell(Position + new Vector3(0.5f, 0.5f));
-            Debug.Log(CellPosition);
-            Fog.SetTile(CellPosition, null);
-            //try getting every tile position and using trial and error instead? might be laggy
+            Vector3 Direction = collision.transform.position - gameObject.transform.position;
+            List<RaycastHit2D> Results = new List<RaycastHit2D>();
+            ContactFilter2D Filter = new ContactFilter2D();
+            Filter.useTriggers = true;
+            if (Physics2D.Raycast(transform.position, Direction, Filter, Results) > 1)
+            {
+                foreach(RaycastHit2D Result in Results)
+                {
+                    if (Result.collider.gameObject.name == "Walls")
+                    {
+                        break;
+                    }
+                    if (Result.collider.gameObject == collision.gameObject)
+                    {
+                        FogScript FS = (FogScript)Result.collider.gameObject.GetComponent("FogScript");
+                        StartCoroutine(FS.Vanish());
+                    }
+                }
+            }
         }
     }
 

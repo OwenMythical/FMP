@@ -11,8 +11,9 @@ public class DialogueManager : MonoBehaviour
     public bool DialogueRunning = false;
     public bool DialogueRunning2 = false;
 
-    public IEnumerator DialogueStart(string Text)
+    IEnumerator Dialogue(string Text)
     {
+        Debug.Log(Text);
         if (DialogueRunning == false)
         {
             DialogueRunning = true;
@@ -25,6 +26,7 @@ public class DialogueManager : MonoBehaviour
             while (DialogueRunning2 == true && DisplayedText != Text)
             {
                 DisplayedText += Text[i];
+                Debug.Log(DisplayedText);
                 yield return new WaitForSeconds(0.05f);
                 TextDisplay.text = DisplayedText;
                 i += 1;
@@ -35,6 +37,11 @@ public class DialogueManager : MonoBehaviour
             TextDisplay.enabled = false;
             DialogueRunning = false;
         }
+    }
+
+    public void DialogueStart(string Text)
+    {
+        StartCoroutine(Dialogue(Text));
     }
 
     private void Start()
