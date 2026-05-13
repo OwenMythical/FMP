@@ -2108,7 +2108,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 782363697833721383, guid: 103fa3560c0c4114cb07270acaa15d6d, type: 3}
       propertyPath: Item
-      value: SectorFKey
+      value: Sector F Key
       objectReference: {fileID: 0}
     - target: {fileID: 782363697833721383, guid: 103fa3560c0c4114cb07270acaa15d6d, type: 3}
       propertyPath: Amount
@@ -3830,6 +3830,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4393898681579303206, guid: 68133984887a2934fb5b130a65c8837d, type: 3}
+      propertyPath: m_text
+      value: 'Meat: 0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739056794764492661, guid: 68133984887a2934fb5b130a65c8837d, type: 3}
+      propertyPath: m_Name
+      value: MoneyDisplay
+      objectReference: {fileID: 0}
     - target: {fileID: 5167915488177403054, guid: 68133984887a2934fb5b130a65c8837d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3921,6 +3929,10 @@ PrefabInstance:
     - target: {fileID: 6110857280738483495, guid: 68133984887a2934fb5b130a65c8837d, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517629355307671305, guid: 68133984887a2934fb5b130a65c8837d, type: 3}
+      propertyPath: m_Name
+      value: Money
       objectReference: {fileID: 0}
     - target: {fileID: 6916765067217717267, guid: 68133984887a2934fb5b130a65c8837d, type: 3}
       propertyPath: m_text
@@ -13533,6 +13545,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1112718575}
     m_Modifications:
+    - target: {fileID: 583395911550351755, guid: 142afe0d926542c488cf3974190ccb56, type: 3}
+      propertyPath: Item
+      value: Sector F Key
+      objectReference: {fileID: 0}
     - target: {fileID: 1020737541980432223, guid: 142afe0d926542c488cf3974190ccb56, type: 3}
       propertyPath: m_Name
       value: SectorFDoor

@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
 {
     public int MetalScrap = 0;
     public int WoodScrap = 0;
-    public int Influence = 0;
+    public int Money = 0;
     public List<TextMeshProUGUI> Inventory = new List<TextMeshProUGUI>();
     public List<string> KeyInventory = new List<string>();
     public List<TextMeshProUGUI> ShopInv = new List<TextMeshProUGUI>();
@@ -51,7 +51,7 @@ public class InventoryManager : MonoBehaviour
         }
         MSD.text = "Metal: " + MetalScrap.ToString();
         WSD.text = "Wood: " + WoodScrap.ToString();
-        ID.text = "Influence: " + Influence.ToString();
+        ID.text = "Meat: " + Money.ToString();
     }
 
     public List<int> FindItem(string Item)
@@ -128,9 +128,9 @@ public class InventoryManager : MonoBehaviour
                 break;
         }
 
-        if (Influence >= Cost)
+        if (Money >= Cost)
         {
-            Influence -= Cost;
+            Money -= Cost;
             CanBuy = true;
         }
 

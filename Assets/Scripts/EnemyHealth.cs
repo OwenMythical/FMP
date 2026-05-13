@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
         if (Health <= 0)
         {
             InventoryManager IM = (InventoryManager)GameObject.FindGameObjectWithTag("Canvas").GetComponent("InventoryManager");
-            IM.Influence += InfluenceGain;
+            IM.Money += InfluenceGain;
             SpriteRenderer SR = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
             SR.color = new Color(0.75f, 0.75f, 0.75f);
             gameObject.tag = "Dead";
