@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (CurrentEquipped != "Nothing")
                 {
-                    GameObject NewItemPickup = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ItemPickup.prefab"));
+                    GameObject NewItemPickup = GameObject.Instantiate(Resources.Load<GameObject>("ItemPickup"));
                     NewItemPickup.transform.position = gameObject.transform.position;
                     CollectionScript ColScript = (CollectionScript)NewItemPickup.GetComponent("CollectionScript");
                     ColScript.Item = CurrentEquipped;
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (CurrentEquipped == "Noise Maker")
                 {
-                    GameObject NoiseMaker = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Distractor.prefab"));
+                    GameObject NoiseMaker = GameObject.Instantiate(Resources.Load<GameObject>("Distractor"));
                     NoiseMaker.transform.position = gameObject.transform.position;
                     Rigidbody2D NMRB = (Rigidbody2D)NoiseMaker.GetComponent("Rigidbody2D");
                     NMRB.AddForce(PR.transform.up * 750);
@@ -150,7 +150,9 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     string Path = AF.GetPath(ItemToEquip);
-                    OSR.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Path);
+                    Debug.Log(Path);
+                    OSR.sprite = Resources.Load<Sprite>(Path);
+                    Debug.Log(Resources.Load<Sprite>(Path));
                     CurrentEquipped = ItemToEquip;
                     OSR.enabled = true;
                 }

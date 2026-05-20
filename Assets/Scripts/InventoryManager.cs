@@ -168,7 +168,7 @@ public class InventoryManager : MonoBehaviour
             ColScript.Item = Item;
             SpriteRenderer ISR = (SpriteRenderer)NewItemPickup.GetComponent("SpriteRenderer");
             string Path = AF.GetPath(Item);
-            ISR.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Path);
+            ISR.sprite = Resources.Load<Sprite>(Path);
         }
         Refresh();
     }

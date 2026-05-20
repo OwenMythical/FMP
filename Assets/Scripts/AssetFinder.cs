@@ -12,15 +12,15 @@ public class AssetFinder : MonoBehaviour
 
         if (Item == "Pipe")
         {
-            Path = "Assets/Sprites/Pipe.png";
+            Path = "Pipe";
         }
         if (Item == "Noise Maker")
         {
-            Path = "Assets/Sprites/Light2.png";
+            Path = "Light2";
         }
         if (Item == "Axe")
         {
-            Path = "Assets/Sprites/Axe.png";
+            Path = "Axe";
         }
 
         return Path;
