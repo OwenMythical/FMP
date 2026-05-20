@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2770248164345009751
+--- !u!1 &7730119351952555816
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9052953840304880581}
-  - component: {fileID: 3641713837063855000}
-  - component: {fileID: 5077778937444569426}
-  - component: {fileID: 3105054500829940863}
-  - component: {fileID: 5022441024868146800}
+  - component: {fileID: 5519196949150853811}
+  - component: {fileID: 4872962951351186143}
+  - component: {fileID: 8933900658211070318}
+  - component: {fileID: 6143228366949812763}
+  - component: {fileID: 7873353280979881487}
   m_Layer: 0
-  m_Name: MetalScrap
+  m_Name: KeyPickup
   m_TagString: CollectionObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9052953840304880581
+--- !u!4 &5519196949150853811
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770248164345009751}
+  m_GameObject: {fileID: 7730119351952555816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -9, z: 0}
+  m_LocalPosition: {x: 4.4512596, y: 12.393125, z: 0.12614615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3641713837063855000
+--- !u!212 &4872962951351186143
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770248164345009751}
+  m_GameObject: {fileID: 7730119351952555816}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6938391d0f2bc23468cd07f7542c121a, type: 3}
-  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3699ec670b6f95a43b542bf73ac3d34b, type: 3}
+  m_Color: {r: 0.9995909, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5077778937444569426
+--- !u!61 &8933900658211070318
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770248164345009751}
+  m_GameObject: {fileID: 7730119351952555816}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -132,27 +132,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3105054500829940863
+--- !u!114 &6143228366949812763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770248164345009751}
+  m_GameObject: {fileID: 7730119351952555816}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d5dac4366c21b74ea7ac659de516776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: MetalScrap
-  Amount: 1
---- !u!114 &5022441024868146800
+  Item: Sector F Key
+  Amount: -1
+--- !u!114 &7873353280979881487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770248164345009751}
+  m_GameObject: {fileID: 7730119351952555816}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
